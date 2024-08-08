@@ -24,7 +24,7 @@ public class MoveControl : MonoBehaviour
     void Update()
     {
 
-        _rb.velocity = new Vector2(_move.x, _rb.velocity.y);
+        _rb.velocity = new Vector3(_move.x, _rb.velocity.y);
 
     }
 
