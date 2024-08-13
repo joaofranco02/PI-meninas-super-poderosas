@@ -48,7 +48,7 @@ public class movecontrol : MonoBehaviour
     {
         if (_checkgroud == true)
         {
-            _rb.AddForce(Vector2.up * _forcejump, ForceMode2D.Impulse);
+          _rb.AddForce(Vector2.up * _forcejump, ForceMode2D.Impulse);
 
         }
 
