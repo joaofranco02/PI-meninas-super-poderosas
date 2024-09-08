@@ -105,7 +105,7 @@ ScriptedImporter:
       y: 537
       width: 1236
       height: 324
-    spriteID: 3cb819b6b1c666b478f86dcf54320d9e
+    spriteID: 495afba861f852f49b512b1a664b901f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 869
       width: 1366
       height: 210
-    spriteID: 01e6bdba7a032f447999d7520dd7d8a6
+    spriteID: 78c11ab8483c5424180feea9152c48aa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
       y: 4
       width: 1366
       height: 525
-    spriteID: c4ce740c754b27c4c9b0551500bc7ec6
+    spriteID: 65f360e470a8faa449449eb5b297cd51
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,50 +172,19 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
-  importHiddenLayers: 1
+  importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
   padding: 4
   spriteSizeExpand: 0
   spriteCategoryList:
@@ -228,7 +197,7 @@ ScriptedImporter:
     spriteName: objetos
     isGroup: 0
     parentIndex: -1
-    spriteID: 3cb819b6b1c666b478f86dcf54320d9e
+    spriteID: 495afba861f852f49b512b1a664b901f
     layerID: 72
     mosaicPosition: {x: 4, y: 537}
     flatten: 0
@@ -238,7 +207,7 @@ ScriptedImporter:
     spriteName: chao
     isGroup: 0
     parentIndex: -1
-    spriteID: 01e6bdba7a032f447999d7520dd7d8a6
+    spriteID: 78c11ab8483c5424180feea9152c48aa
     layerID: 47
     mosaicPosition: {x: 4, y: 869}
     flatten: 0
@@ -248,7 +217,7 @@ ScriptedImporter:
     spriteName: parede
     isGroup: 0
     parentIndex: -1
-    spriteID: c4ce740c754b27c4c9b0551500bc7ec6
+    spriteID: 65f360e470a8faa449449eb5b297cd51
     layerID: 3
     mosaicPosition: {x: 4, y: 4}
     flatten: 0

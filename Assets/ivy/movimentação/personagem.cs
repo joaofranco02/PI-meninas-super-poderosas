@@ -9,25 +9,27 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] Rigidbody2D _rb;
     bool _facingRight;
     [SerializeField] float _SPEED;
+     [SerializeField] Animator anim;
 
     //pulo plataforma
-    bool _checkgroud;
-    [SerializeField] float _forcejump;
-    public Animator anim ;
+     [SerializeField] float jumpForce;
+
+    
+
     void Start()
     {
+      _rb = GetComponent<Rigidbody2D>();
 
-
+       anim = GetComponent<Animator>();
+    
     }
 
 
   void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-           anim.SetBool("personagem",true);
-        }
 
+        jump();
+       
         _rb.velocity = new Vector2(_move.x * _SPEED, _rb.velocity.y);
 
         if (_move.x > 0 && _facingRight == true)
@@ -39,26 +41,21 @@ public class NewBehaviourScript : MonoBehaviour
         {
             flip();
         }
+       
+      
     }
+   
+   
     public void SetMove(InputAction.CallbackContext value)
 
     {
         _move = value.ReadValue<Vector3>();
 
     }
+   
+    
 
-    //pulo plataforma
-    public void SetJump(InputAction.CallbackContext value)
-
-    {
-        if (_checkgroud == true)
-        {
-            _rb.AddForce(Vector2.up * _forcejump, ForceMode2D.Impulse);
-
-        }
-
-
-    }
+   
 
     void flip()
 
@@ -69,18 +66,15 @@ public class NewBehaviourScript : MonoBehaviour
         transform.localScale = new Vector2(x, transform.localScale.y);
     }
     //pulo plataforma
-    private void OnTriggerEnter2D(Collider2D collision)
+   
+  void jump()
+  {
+    if(Input.GetKeyDown(KeyCode.Space))
     {
-        if (collision.gameObject.CompareTag("ground"))
-            Debug.Log("tocou no chao");
-
-        _checkgroud = true;
+        _rb.velocity = new Vector2(0,jumpForce);
+       
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))
-            Debug.Log("saiu no chao");
-
-        _checkgroud = false;
-    }
+     
+     }
+  
 }
