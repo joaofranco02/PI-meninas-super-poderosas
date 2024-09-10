@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,8 @@ public class MoveControl : MonoBehaviour
     bool _facingRight;
     bool _facingUp;
 
-    bool _checkGround;
+    [SerializeField] bool _checkGround;
+
     [SerializeField] float _andando;
     [SerializeField] Animator _anim;
 
@@ -25,9 +27,11 @@ public class MoveControl : MonoBehaviour
     {
         _rb.velocity = new Vector2(_move.x * _speed, _rb.velocity.y);
 
-        _andando = Mathf.Abs(_move.x);
+        _andando = MathF.Abs(_move.x);
 
         _anim.SetFloat("speedAnim", _andando);
+        _anim.SetBool("CheckGround", _checkGround);
+        _anim.SetFloat("speedY", _rb.velocity.y);
 
         if (_move.x > 0 && _facingRight == true)
         {
@@ -47,7 +51,6 @@ public class MoveControl : MonoBehaviour
             //flipY();
         }
     }
-
 
     public void SetMove(InputAction.CallbackContext value)
     {
