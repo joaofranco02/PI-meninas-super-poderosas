@@ -105,7 +105,7 @@ ScriptedImporter:
       y: 537
       width: 1236
       height: 324
-    spriteID: c7987700f437dc241bf56a425e9ed742
+    spriteID: 495afba861f852f49b512b1a664b901f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 869
       width: 1366
       height: 210
-    spriteID: 74227b351c9608546adb108cf111e187
+    spriteID: 78c11ab8483c5424180feea9152c48aa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
       y: 4
       width: 1366
       height: 525
-    spriteID: 292f31f5a0b9e50458cd0f4f0522f07e
+    spriteID: 65f360e470a8faa449449eb5b297cd51
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -183,6 +183,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
   padding: 4
   spriteSizeExpand: 0
   spriteCategoryList:
@@ -195,7 +197,7 @@ ScriptedImporter:
     spriteName: objetos
     isGroup: 0
     parentIndex: -1
-    spriteID: c7987700f437dc241bf56a425e9ed742
+    spriteID: 495afba861f852f49b512b1a664b901f
     layerID: 72
     mosaicPosition: {x: 4, y: 537}
     flatten: 0
@@ -205,7 +207,7 @@ ScriptedImporter:
     spriteName: chao
     isGroup: 0
     parentIndex: -1
-    spriteID: 74227b351c9608546adb108cf111e187
+    spriteID: 78c11ab8483c5424180feea9152c48aa
     layerID: 47
     mosaicPosition: {x: 4, y: 869}
     flatten: 0
@@ -215,7 +217,7 @@ ScriptedImporter:
     spriteName: parede
     isGroup: 0
     parentIndex: -1
-    spriteID: 292f31f5a0b9e50458cd0f4f0522f07e
+    spriteID: 65f360e470a8faa449449eb5b297cd51
     layerID: 3
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
