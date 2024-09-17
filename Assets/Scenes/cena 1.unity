@@ -214,7 +214,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130979279}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efd8ce1132a01374c884989b6c251737, type: 3}
   m_Name: 
@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 241906082}
   - component: {fileID: 241906084}
   - component: {fileID: 241906085}
+  - component: {fileID: 241906086}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -462,6 +463,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2566203, y: 4.157756}
   m_EdgeRadius: 0
+--- !u!114 &241906086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241906077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd56294c3f118bc4891c2d9d5e51d291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: cena 2
+  triggerPointX: 10
 --- !u!1 &634353395
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,8 +883,8 @@ Transform:
   m_GameObject: {fileID: 765213810}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8, y: -4.31, z: -1.41}
-  m_LocalScale: {x: 1.9823048, y: 1.9823048, z: 1.9823048}
+  m_LocalPosition: {x: -3.8255, y: -4.9583, z: -1.41}
+  m_LocalScale: {x: 2.2181864, y: 2.5997927, z: 1.9823048}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -906,7 +921,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.32436365}
+  m_Offset: {x: 0, y: -0.09009996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -917,7 +932,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.66, y: 1.4512726}
+  m_Size: {x: 13.66, y: 1.9198}
   m_EdgeRadius: 0
 --- !u!1 &1200639463
 GameObject:
@@ -1023,8 +1038,8 @@ Transform:
   m_GameObject: {fileID: 1235749203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 4.78, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.8471, y: 5.1259, z: 0}
+  m_LocalScale: {x: 1.1355582, y: 1.1318, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1297542722}
@@ -1088,7 +1103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235749203}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efd8ce1132a01374c884989b6c251737, type: 3}
   m_Name: 
