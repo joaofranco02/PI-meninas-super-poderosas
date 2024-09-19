@@ -44,6 +44,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""atacar"",
+                    ""type"": ""Button"",
+                    ""id"": ""b491be50-5764-4405-991c-39b534f980ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -211,6 +220,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""pular"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eff41c40-a5cd-40b7-ade2-2bb03667d327"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""atacar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -221,6 +241,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_personagem = asset.FindActionMap("personagem", throwIfNotFound: true);
         m_personagem_movimento = m_personagem.FindAction("movimento", throwIfNotFound: true);
         m_personagem_pular = m_personagem.FindAction("pular", throwIfNotFound: true);
+        m_personagem_atacar = m_personagem.FindAction("atacar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,12 +305,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPersonagemActions> m_PersonagemActionsCallbackInterfaces = new List<IPersonagemActions>();
     private readonly InputAction m_personagem_movimento;
     private readonly InputAction m_personagem_pular;
+    private readonly InputAction m_personagem_atacar;
     public struct PersonagemActions
     {
         private @PlayerInput m_Wrapper;
         public PersonagemActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @movimento => m_Wrapper.m_personagem_movimento;
         public InputAction @pular => m_Wrapper.m_personagem_pular;
+        public InputAction @atacar => m_Wrapper.m_personagem_atacar;
         public InputActionMap Get() { return m_Wrapper.m_personagem; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +328,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @pular.started += instance.OnPular;
             @pular.performed += instance.OnPular;
             @pular.canceled += instance.OnPular;
+            @atacar.started += instance.OnAtacar;
+            @atacar.performed += instance.OnAtacar;
+            @atacar.canceled += instance.OnAtacar;
         }
 
         private void UnregisterCallbacks(IPersonagemActions instance)
@@ -315,6 +341,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @pular.started -= instance.OnPular;
             @pular.performed -= instance.OnPular;
             @pular.canceled -= instance.OnPular;
+            @atacar.started -= instance.OnAtacar;
+            @atacar.performed -= instance.OnAtacar;
+            @atacar.canceled -= instance.OnAtacar;
         }
 
         public void RemoveCallbacks(IPersonagemActions instance)
@@ -336,5 +365,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMovimento(InputAction.CallbackContext context);
         void OnPular(InputAction.CallbackContext context);
+        void OnAtacar(InputAction.CallbackContext context);
     }
 }

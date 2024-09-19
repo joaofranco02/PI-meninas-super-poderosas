@@ -57,6 +57,17 @@ public class MoveControl : MonoBehaviour
         _move = value.ReadValue<Vector3>();
     }
 
+    public void Setataque(InputAction.CallbackContext value)
+    {
+        _anim.SetBool("ataque", true);
+        Invoke("ataquefalse", 0.5f);
+    }
+
+    void ataquefalse()
+    {
+        _anim.SetBool("ataque", false);
+    }
+    
     public void SetJump(InputAction.CallbackContext value)
     {
         if (_checkGround == true)
