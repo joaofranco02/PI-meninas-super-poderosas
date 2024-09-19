@@ -9,21 +9,39 @@ public class ChangeSceneOnTrigger : MonoBehaviour
     public Transform spawnPoint; // Ponto onde o jogador irá aparecer ao voltar
     private bool isInZone = false; // Verifica se o jogador está na área de troca de cena
 
-    // Variáveis estáticas para armazenar a posição do jogador ao trocar de cena
+    // Variáveis estáticas para armazenar a posição, rotação e animação do jogador ao trocar de cena
     private static Vector3 lastPosition;
-    private static bool hasPositionSaved = false;
+    private static Quaternion lastRotation;
+    private static Vector2 lastVelocity;
+    private static string lastAnimationState;
+    private static bool hasStateSaved = false;
+
+    private Animator playerAnimator;
+    private Rigidbody2D playerRb;
 
     private void Start()
     {
-        // Se houver uma posição salva, reposiciona o jogador
-        if (hasPositionSaved)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        // Se houver um estado salvo, restaura o jogador
+        if (hasStateSaved && player != null)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            player.transform.position = lastPosition;
+            player.transform.rotation = lastRotation;
+
+            playerRb = player.GetComponent<Rigidbody2D>();
+            if (playerRb != null)
             {
-                player.transform.position = lastPosition;
-                hasPositionSaved = false; // Reseta a flag
+                playerRb.velocity = lastVelocity; // Restaura a velocidade
             }
+
+            playerAnimator = player.GetComponent<Animator>();
+            if (playerAnimator != null && !string.IsNullOrEmpty(lastAnimationState))
+            {
+                playerAnimator.Play(lastAnimationState); // Restaura o estado da animação
+            }
+
+            hasStateSaved = false; // Reseta a flag
         }
     }
 
@@ -32,12 +50,29 @@ public class ChangeSceneOnTrigger : MonoBehaviour
         // Se o jogador estiver na zona e apertar "F"
         if (isInZone && Input.GetKeyDown(KeyCode.F))
         {
-            // Salva a posição atual do jogador
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            // Salva o estado atual do jogador
             if (player != null)
             {
                 lastPosition = player.transform.position;
-                hasPositionSaved = true;
+                lastRotation = player.transform.rotation;
+
+                playerRb = player.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
+                {
+                    lastVelocity = playerRb.velocity; // Salva a velocidade
+                }
+
+                playerAnimator = player.GetComponent<Animator>();
+                if (playerAnimator != null)
+                {
+                    lastAnimationState = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") ? "Idle" :
+                                         playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Running") ? "Running" :
+                                         ""; // Adapte com os estados do seu Animator
+                }
+
+                hasStateSaved = true;
             }
 
             // Carrega a próxima cena
