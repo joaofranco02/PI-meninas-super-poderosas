@@ -5,65 +5,61 @@ using UnityEngine.SceneManagement; // Para acessar a troca de cenas
 
 public class ChangeSceneOnTrigger : MonoBehaviour
 {
-    public string sceneName; // Nome da cena para onde o jogador será levado
-    public KeyCode triggerKey = KeyCode.F; // Tecla para ativar a troca de cena
-    public Color gizmoColor = Color.green; // Cor do gizmo para a área do trigger
-    public Vector3 triggerAreaSize = new Vector3(5f, 5f, 0); // Tamanho da área do trigger
-    public Vector3 triggerAreaPosition = new Vector3(0, 0, 0); // Posição da área do trigger
-    private bool playerInTriggerArea = false; // Verifica se o jogador está na área
+    public string sceneToLoad; // Nome da cena que será carregada
+    public Transform spawnPoint; // Ponto onde o jogador irá aparecer ao voltar
+    private bool isInZone = false; // Verifica se o jogador está na área de troca de cena
+
+    // Variáveis estáticas para armazenar a posição do jogador ao trocar de cena
+    private static Vector3 lastPosition;
+    private static bool hasPositionSaved = false;
+
+    private void Start()
+    {
+        // Se houver uma posição salva, reposiciona o jogador
+        if (hasPositionSaved)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                player.transform.position = lastPosition;
+                hasPositionSaved = false; // Reseta a flag
+            }
+        }
+    }
 
     private void Update()
     {
-        // Se o jogador está na área e a tecla F foi pressionada
-        if (playerInTriggerArea && Input.GetKeyDown(triggerKey))
+        // Se o jogador estiver na zona e apertar "F"
+        if (isInZone && Input.GetKeyDown(KeyCode.F))
         {
-            // Muda a cena
-            SceneManager.LoadScene(sceneName);
+            // Salva a posição atual do jogador
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                lastPosition = player.transform.position;
+                hasPositionSaved = true;
+            }
+
+            // Carrega a próxima cena
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 
-    // Detecta quando o jogador entra na área de trigger
+    // Detecta quando o jogador entra na área de mudança de cena
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Certifique-se de que o objeto tem a tag "Player"
+        if (other.CompareTag("Player"))
         {
-            playerInTriggerArea = true;
+            isInZone = true;
         }
     }
 
-    // Detecta quando o jogador sai da área de trigger
+    // Detecta quando o jogador sai da área de mudança de cena
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInTriggerArea = false;
+            isInZone = false;
         }
-    }
-
-    // Desenha a área do trigger no editor usando Gizmos
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = gizmoColor;
-        Gizmos.DrawWireCube(triggerAreaPosition, triggerAreaSize);
-    }
-
-    // Desenha o collider que será a área de trigger
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = gizmoColor;
-        Gizmos.DrawWireCube(triggerAreaPosition, triggerAreaSize);
-    }
-
-    // Define a área de trigger como um BoxCollider2D
-    private void OnValidate()
-    {
-        BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-        if (collider == null)
-        {
-            collider = gameObject.AddComponent<BoxCollider2D>();
-        }
-        collider.isTrigger = true; // Define como um trigger
-        collider.size = triggerAreaSize; // Define o tamanho do trigger
-        collider.offset = triggerAreaPosition; // Define a posição do trigger
     }
 }
