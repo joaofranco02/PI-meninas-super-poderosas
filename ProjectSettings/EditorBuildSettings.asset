@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/cena 2.unity
+    path: Assets/Scenes/sala de aula.unity
     guid: 9d2c268a02e4fd44da48c75233b6cd38
   - enabled: 1
     path: Assets/Scenes/cena 1.unity
