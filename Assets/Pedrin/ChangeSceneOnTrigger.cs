@@ -67,9 +67,16 @@ public class ChangeSceneOnTrigger : MonoBehaviour
                 playerAnimator = player.GetComponent<Animator>();
                 if (playerAnimator != null)
                 {
-                    lastAnimationState = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") ? "Idle" :
-                                         playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Running") ? "Running" :
-                                         ""; // Adapte com os estados do seu Animator
+                    // Salva o estado da animação com base nos nomes "parado" e "correndo"
+                    AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+                    if (stateInfo.IsName("parado"))
+                    {
+                        lastAnimationState = "parado";
+                    }
+                    else if (stateInfo.IsName("correndo"))
+                    {
+                        lastAnimationState = "correndo";
+                    }
                 }
 
                 hasStateSaved = true;
