@@ -54,6 +54,17 @@ public class MoveControl : MonoBehaviour
         }
     }
 
+    public void Setataque(InputAction.CallbackContext value)
+    {
+        _anim.SetBool("ataque", true);
+        Invoke("ataquefalse", 0.5f);
+    }
+
+    void ataquefalse()
+    {
+        _anim.SetBool("ataque", false);
+    }
+
     void Flip()
     {
         _facingRight = !_facingRight;

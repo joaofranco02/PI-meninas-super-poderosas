@@ -53,6 +53,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Andar Control"",
+                    ""type"": ""Value"",
+                    ""id"": ""c8173912-8bef-42b7-a9d5-5d784934acd5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -231,6 +240,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""atacar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f51aa3c9-1702-49e5-8ac4-af789da17222"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Andar Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""87806fc0-dc03-4ebb-9151-c8191402cd75"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Andar Control"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""aa7b2a32-acf1-4bba-a0aa-23916de4b2a8"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Andar Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""484baa7e-ef04-4b35-bf5a-3c528396119f"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Andar Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -242,6 +295,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_personagem_movimento = m_personagem.FindAction("movimento", throwIfNotFound: true);
         m_personagem_pular = m_personagem.FindAction("pular", throwIfNotFound: true);
         m_personagem_atacar = m_personagem.FindAction("atacar", throwIfNotFound: true);
+        m_personagem_AndarControl = m_personagem.FindAction("Andar Control", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +360,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_personagem_movimento;
     private readonly InputAction m_personagem_pular;
     private readonly InputAction m_personagem_atacar;
+    private readonly InputAction m_personagem_AndarControl;
     public struct PersonagemActions
     {
         private @PlayerInput m_Wrapper;
@@ -313,6 +368,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @movimento => m_Wrapper.m_personagem_movimento;
         public InputAction @pular => m_Wrapper.m_personagem_pular;
         public InputAction @atacar => m_Wrapper.m_personagem_atacar;
+        public InputAction @AndarControl => m_Wrapper.m_personagem_AndarControl;
         public InputActionMap Get() { return m_Wrapper.m_personagem; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -331,6 +387,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @atacar.started += instance.OnAtacar;
             @atacar.performed += instance.OnAtacar;
             @atacar.canceled += instance.OnAtacar;
+            @AndarControl.started += instance.OnAndarControl;
+            @AndarControl.performed += instance.OnAndarControl;
+            @AndarControl.canceled += instance.OnAndarControl;
         }
 
         private void UnregisterCallbacks(IPersonagemActions instance)
@@ -344,6 +403,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @atacar.started -= instance.OnAtacar;
             @atacar.performed -= instance.OnAtacar;
             @atacar.canceled -= instance.OnAtacar;
+            @AndarControl.started -= instance.OnAndarControl;
+            @AndarControl.performed -= instance.OnAndarControl;
+            @AndarControl.canceled -= instance.OnAndarControl;
         }
 
         public void RemoveCallbacks(IPersonagemActions instance)
@@ -366,5 +428,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMovimento(InputAction.CallbackContext context);
         void OnPular(InputAction.CallbackContext context);
         void OnAtacar(InputAction.CallbackContext context);
+        void OnAndarControl(InputAction.CallbackContext context);
     }
 }
