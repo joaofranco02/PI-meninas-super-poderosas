@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; // Para carregar novas cenas
 
 public class MoveControl : MonoBehaviour
 {
@@ -14,8 +12,7 @@ public class MoveControl : MonoBehaviour
     bool _facingRight;
     bool _facingUp;
 
-    [SerializeField] bool _checkGround;
-
+    bool _checkGround;
     [SerializeField] float _andando;
     [SerializeField] Animator _anim;
 
@@ -23,32 +20,23 @@ public class MoveControl : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+
     void Update()
     {
         _rb.velocity = new Vector2(_move.x * _speed, _rb.velocity.y);
 
-        _andando = MathF.Abs(_move.x);
-
+        _andando = Mathf.Abs(_move.x);
         _anim.SetFloat("speedAnim", _andando);
         _anim.SetBool("CheckGround", _checkGround);
         _anim.SetFloat("speedY", _rb.velocity.y);
 
-        if (_move.x > 0 && _facingRight == true)
+        if (_move.x > 0 && !_facingRight)
         {
-            flip();
+            Flip();
         }
-        else if (_move.x < 0 && _facingRight == false)
+        else if (_move.x < 0 && _facingRight)
         {
-            flip();
-        }
-
-        if (_move.y < 0 && _facingUp == true)
-        {
-            //  flipY();
-        }
-        else if (_move.y > 0 && _facingUp == false)
-        {
-            //flipY();
+            Flip();
         }
     }
 
@@ -57,59 +45,59 @@ public class MoveControl : MonoBehaviour
         _move = value.ReadValue<Vector3>();
     }
 
-    public void Setataque(InputAction.CallbackContext value)
-    {
-        _anim.SetBool("ataque", true);
-        Invoke("ataquefalse", 0.5f);
-    }
-
-    void ataquefalse()
-    {
-        _anim.SetBool("ataque", false);
-    }
-    
     public void SetJump(InputAction.CallbackContext value)
     {
-        if (_checkGround == true)
+        if (_checkGround)
         {
             _rb.velocity = Vector2.zero;
             _rb.AddForce(Vector2.up * _forceJump, ForceMode2D.Impulse);
         }
-
     }
 
-    void flip()
+    void Flip()
     {
         _facingRight = !_facingRight;
-        float x = transform.localScale.x;
-        x *= -1;
-
-        transform.localScale = new Vector2(x, transform.localScale.y);
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
-
-    void flipY()
-    {
-        _facingUp = !_facingUp;
-        float y = transform.localScale.y;
-        y *= -1;
-
-        transform.localScale = new Vector2(transform.localScale.x, y);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("OnTriggerEnter2D called with " + collision.gameObject.name); // Adicione esta linha para depuração
+
         if (collision.gameObject.CompareTag("ground"))
         {
             _checkGround = true;
+            Debug.Log("Colidiu com o ground!");
+        }
+        else if (collision.gameObject.CompareTag("door"))
+        {
+            Debug.Log("Colidiu com a porta!");
+            LoadNewScene();
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
             _checkGround = false;
+            Debug.Log("Saiu do ground!");
+        }
+    }
+
+    private void LoadNewScene()
+    {
+        string newSceneName = "NewSceneName"; // Substitua pelo nome correto da cena
+        if (SceneManager.GetSceneByName(newSceneName) != null)
+        {
+            Debug.Log("Carregando nova cena: " + newSceneName);
+            SceneManager.LoadScene(newSceneName);
+        }
+        else
+        {
+            Debug.LogError("Cena não encontrada: " + newSceneName);
         }
     }
 }
-
