@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4935f6498049c0498198797b4f6596d
+guid: feb98c61ac5dbcb468dd5941e58bbb32
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: objetos
+  - name: armario
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -102,10 +102,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 537
-      width: 1236
-      height: 324
-    spriteID: 495afba861f852f49b512b1a664b901f
+      y: 867
+      width: 1132
+      height: 337
+    spriteID: cb950f34da2a9874c9b8fc1fddde3e6f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,29 +113,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 537}
-    spritePosition: {x: 41, y: 217}
-  - name: chao
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 869
-      width: 1366
-      height: 210
-    spriteID: 78c11ab8483c5424180feea9152c48aa
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 869}
-    spritePosition: {x: 0, y: 11}
+    uvTransform: {x: 4, y: 867}
+    spritePosition: {x: 788, y: 244}
   - name: parede
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -145,9 +124,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1366
-      height: 525
-    spriteID: 65f360e470a8faa449449eb5b297cd51
+      width: 1916
+      height: 562
+    spriteID: 536668008bf94634e86fe7104b72bca9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,7 +135,28 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 218}
+    spritePosition: {x: 0, y: 245}
+  - name: chao
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 574
+      width: 1920
+      height: 285
+    spriteID: 92ead51ffac74d648bb2b6de6ef90c20
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 574}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -193,23 +193,13 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: objetos
-    spriteName: objetos
+  - name: armario
+    spriteName: armario
     isGroup: 0
     parentIndex: -1
-    spriteID: 495afba861f852f49b512b1a664b901f
-    layerID: 72
-    mosaicPosition: {x: 4, y: 537}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: chao
-    spriteName: chao
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 78c11ab8483c5424180feea9152c48aa
-    layerID: 47
-    mosaicPosition: {x: 4, y: 869}
+    spriteID: cb950f34da2a9874c9b8fc1fddde3e6f
+    layerID: 7
+    mosaicPosition: {x: 4, y: 867}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -217,9 +207,19 @@ ScriptedImporter:
     spriteName: parede
     isGroup: 0
     parentIndex: -1
-    spriteID: 65f360e470a8faa449449eb5b297cd51
-    layerID: 3
+    spriteID: 536668008bf94634e86fe7104b72bca9
+    layerID: 5
     mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: chao
+    spriteName: chao
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 92ead51ffac74d648bb2b6de6ef90c20
+    layerID: 3
+    mosaicPosition: {x: 4, y: 574}
     flatten: 0
     isImported: 1
     isVisible: 1
