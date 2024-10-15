@@ -598,7 +598,6 @@ GameObject:
   - component: {fileID: 205926065}
   - component: {fileID: 205926069}
   - component: {fileID: 205926070}
-  - component: {fileID: 205926071}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -782,23 +781,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   playerRb: {fileID: 205926065}
---- !u!114 &205926071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205926064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47a6f4fecd4f424da5d7802d9270033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaOn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  vidaOff: []
 --- !u!1 &211168106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2590,7 @@ GameObject:
   - component: {fileID: 1539021359}
   - component: {fileID: 1539021361}
   m_Layer: 0
-  m_Name: SimpleEnemies Bat_AttackInit_0
+  m_Name: 'Inimigo '
   m_TagString: espinho
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2624,7 +2606,7 @@ Animator:
   m_GameObject: {fileID: 1539021355}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1da0eb667ca79f4aac93076f185aa82, type: 2}
+  m_Controller: {fileID: 9100000, guid: 39e03ab76fcfb1946bf772da2df6c55b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2676,7 +2658,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b9796ec6814955e4f97c3eeb75bcebdf, type: 3}
+  m_Sprite: {fileID: 1222757071, guid: 8f9db42aa505f7a479c2676882c4b2fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2696,8 +2678,8 @@ Transform:
   m_GameObject: {fileID: 1539021355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.82, y: -2.79, z: 0}
-  m_LocalScale: {x: 1.1442, y: 1.1082, z: 1}
+  m_LocalPosition: {x: 2.721, y: -1.441, z: 0}
+  m_LocalScale: {x: 7.3196306, y: 9.24084, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2734,18 +2716,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0036344826, y: 0.0262652}
+  m_Offset: {x: 0.005570315, y: -0.010203273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.17, y: 0.09}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25137246, y: 0.27208072}
+  m_Size: {x: 0.0953853, y: 0.06024708}
   m_EdgeRadius: 0
 --- !u!114 &1539021361
 MonoBehaviour:
@@ -2759,7 +2741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b689fb621424a9c479c19073490ff2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distancia: 4
+  distancia: 5
   speed: 2
   playerPos: {fileID: 205926068}
   flyt: {fileID: 0}
