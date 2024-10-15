@@ -1,11 +1,16 @@
+using Microsoft.Win32.SafeHandles;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement; // Para carregar novas cenas
+using UnityEngine.Pool;
 
 public class MoveControl : MonoBehaviour
 {
     [SerializeField] Vector3 _move;
-    Rigidbody2D _rb;
+     Rigidbody2D _rb;
     [SerializeField] float _speed;
     [SerializeField] float _forceJump;
 
@@ -20,23 +25,45 @@ public class MoveControl : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
     }
-
     void Update()
     {
         _rb.velocity = new Vector2(_move.x * _speed, _rb.velocity.y);
 
-        _andando = Mathf.Abs(_move.x);
+        _andando = MathF.Abs(_move.x);
+
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            GameObject bullet = BalaPool.SharedInstance.GetPooledObject();
+            if (bullet != null)
+            {
+                //bullet.transform.position = turret.transform.position;
+               // bullet.transform.rotation = turret.transform.rotation;
+                bullet.SetActive(true);
+            }
+        }
+
+
         _anim.SetFloat("speedAnim", _andando);
         _anim.SetBool("CheckGround", _checkGround);
         _anim.SetFloat("speedY", _rb.velocity.y);
 
-        if (_move.x > 0 && !_facingRight)
+        if (_move.x > 0 && _facingRight == true)
         {
-            Flip();
+            flip();
         }
-        else if (_move.x < 0 && _facingRight)
+        else if (_move.x < 0 && _facingRight == false)
         {
-            Flip();
+            flip();
+        }
+
+        if (_move.y < 0 && _facingUp == true)
+        {
+            //  flipY();
+        }
+        else if (_move.y > 0 && _facingUp == false)
+        {
+            //flipY();
         }
     }
 
@@ -47,68 +74,45 @@ public class MoveControl : MonoBehaviour
 
     public void SetJump(InputAction.CallbackContext value)
     {
-        if (_checkGround)
+        if (_checkGround == true)
         {
             _rb.velocity = Vector2.zero;
             _rb.AddForce(Vector2.up * _forceJump, ForceMode2D.Impulse);
         }
+       
     }
 
-    public void Setataque(InputAction.CallbackContext value)
-    {
-        _anim.SetBool("ataque", true);
-        Invoke("ataquefalse", 0.5f);
-    }
-
-    void ataquefalse()
-    {
-        _anim.SetBool("ataque", false);
-    }
-
-    void Flip()
+    void flip()
     {
         _facingRight = !_facingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        float x = transform.localScale.x;
+        x *= -1;
+
+        transform.localScale = new Vector2(x, transform.localScale.y);
     }
+
+    void flipY()
+    {
+        _facingUp = !_facingUp;
+        float y = transform.localScale.y;
+        y *= -1;
+
+        transform.localScale = new Vector2(transform.localScale.x,y);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D called with " + collision.gameObject.name); // Adicione esta linha para depuração
-
         if (collision.gameObject.CompareTag("ground"))
         {
             _checkGround = true;
-            Debug.Log("Colidiu com o ground!");
-        }
-        else if (collision.gameObject.CompareTag("door"))
-        {
-            Debug.Log("Colidiu com a porta!");
-            LoadNewScene();
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
             _checkGround = false;
-            Debug.Log("Saiu do ground!");
-        }
-    }
-
-    private void LoadNewScene()
-    {
-        string newSceneName = "NewSceneName"; // Substitua pelo nome correto da cena
-        if (SceneManager.GetSceneByName(newSceneName) != null)
-        {
-            Debug.Log("Carregando nova cena: " + newSceneName);
-            SceneManager.LoadScene(newSceneName);
-        }
-        else
-        {
-            Debug.LogError("Cena não encontrada: " + newSceneName);
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;  // Corrigido de "unityEngine.ScaneManagement" para "UnityEngine.SceneManagement"
 
-public class CarregaCenas : MonoBehaviour
+public class CameraSeguir : MonoBehaviour
 {
     // Método para carregar uma cena pelo índice
     public void LoadScene(int cenaIndex)
