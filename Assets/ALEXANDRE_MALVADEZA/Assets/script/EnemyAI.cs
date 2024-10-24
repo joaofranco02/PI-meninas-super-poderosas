@@ -8,12 +8,12 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public Transform playerPos;
     public Rigidbody2D flyt;
+    private bool olhandoParaDireita = true; // Controle da direção
 
     private void Start()
     {
 
     }
-
 
     void Update()
     {
@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour
         if (distancia < 4)
         {
             Seguir();
+            VirarParaPlayer(); // Ajusta a direção
         }
     }
 
@@ -30,5 +31,27 @@ public class EnemyAI : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
     }
 
+    private void VirarParaPlayer()
+    {
+        // Verifica a posição do jogador em relação ao inimigo e ajusta se necessário
+        if (playerPos.position.x > transform.position.x && !olhandoParaDireita)
+        {
+            Virar(); // Vira para a direita
+        }
+        else if (playerPos.position.x < transform.position.x && olhandoParaDireita)
+        {
+            Virar(); // Vira para a esquerda
+        }
+    }
 
+    private void Virar()
+    {
+        // Inverte o valor da variável de controle de direção
+        olhandoParaDireita = !olhandoParaDireita;
+
+        // Multiplica o eixo X da escala por -1 para virar o sprite
+        Vector3 escala = transform.localScale;
+        escala.x *= -1;
+        transform.localScale = escala;
+    }
 }
