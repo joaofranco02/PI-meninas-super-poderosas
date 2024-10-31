@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI1 : MonoBehaviour
 {
     public float distancia;
     public float speed;
     public Transform playerPos;
     public Rigidbody2D flyt;
-    private bool olhandoParaDireita = true; // Controle da direção
+    private bool olhandoParaDireita = true; // Controle da direï¿½ï¿½o
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
         if (distancia < 4)
         {
             Seguir();
-            VirarParaPlayer(); // Ajusta a direção
+            VirarParaPlayer(); // Ajusta a direï¿½ï¿½o
         }
     }
 
@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void VirarParaPlayer()
     {
-        // Verifica a posição do jogador em relação ao inimigo e ajusta se necessário
+        // Verifica a posiï¿½ï¿½o do jogador em relaï¿½ï¿½o ao inimigo e ajusta se necessï¿½rio
         if (playerPos.position.x > transform.position.x && !olhandoParaDireita)
         {
             Virar(); // Vira para a direita
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Virar()
     {
-        // Inverte o valor da variável de controle de direção
+        // Inverte o valor da variï¿½vel de controle de direï¿½ï¿½o
         olhandoParaDireita = !olhandoParaDireita;
 
         // Multiplica o eixo X da escala por -1 para virar o sprite
