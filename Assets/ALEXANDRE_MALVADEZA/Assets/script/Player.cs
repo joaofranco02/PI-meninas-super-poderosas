@@ -73,26 +73,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);  // Olhando para a esquerda
         }
 
-        // Verifica se o jogador pressionou o botão de tiro
-        if (Input.GetButtonDown("Fire1")) // "Fire1" é normalmente o botão esquerdo do mouse ou Ctrl
-        {
-            Shoot();
-        }
     }
-
-    private void Shoot()
-    {
-        // Criar o projétil
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-
-        // Definir a velocidade do projétil na direção em que o jogador está voltado
-        if (rb != null)
-        {
-            rb.velocity = transform.right * projectileSpeed; // Direção do projétil
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("chao"))

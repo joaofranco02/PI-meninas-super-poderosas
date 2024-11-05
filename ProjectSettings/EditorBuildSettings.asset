@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ALEXANDRE_MALVADEZA/Assets/Scenes/MENU.unity
+    guid: 3adce1a8e867db94bb1d5fbda9de38e6
+  - enabled: 1
+    path: Assets/ALEXANDRE_MALVADEZA/Assets/Scenes/LEVEL1.unity
+    guid: 97ed3df7961f1104aa4fbd674c6a2ce4
+  - enabled: 1
+    path: Assets/ALEXANDRE_MALVADEZA/Assets/Scenes/GAMEOVER.unity
+    guid: caad55f06331da848ba73cd32d7b738f
   m_configObjects: {}
