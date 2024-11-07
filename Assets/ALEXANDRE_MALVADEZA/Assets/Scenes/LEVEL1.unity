@@ -707,6 +707,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   shootPoint: {fileID: 0}
   projectileSpeed: 10
+  sommoeda: {fileID: 959603272}
 --- !u!114 &205926070
 MonoBehaviour:
   m_ObjectHideFlags: 0

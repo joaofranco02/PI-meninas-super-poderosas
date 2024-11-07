@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float projectileSpeed = 10f;
+    public AudioSource sommoeda;
 
     private Animator animator;
 
@@ -104,6 +105,8 @@ public class Player : MonoBehaviour
         {
             moeda++;
             Destroy(col.gameObject);
+            sommoeda.Play();
+
         }
         else if (col.gameObject.CompareTag("chave"))
         {
