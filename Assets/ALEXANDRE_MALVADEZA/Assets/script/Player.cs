@@ -4,37 +4,39 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private bool porta;  // Marca se a porta está acessível
-    private GameObject novaPorta;  // Referência para a nova porta
+    private bool porta;
+    private GameObject novaPorta;
 
-    public Text moedaTxt;  // Referência ao Text UI que exibe a quantidade de moedas
-    private int moeda;  // Contador de moedas
+    public Text moedaTxt;
+    private int moeda;
 
-    public Text chaveTxt;  // Referência ao Text UI que exibe a quantidade de chaves
-    private int chave;  // Contador de chaves
+    public Text chaveTxt;
+    private int chave;
 
-    public float speed;  // Velocidade do jogador
-    public Rigidbody2D playerRb;  // Referência ao Rigidbody2D do jogador
-    private float movePlayer;  // Entrada horizontal para movimentação
+    public float speed;
+    public Rigidbody2D playerRb;
+    private float movePlayer;
 
-    public float jumpForce;  // Força do pulo
-    private bool isGrounded;  // Verificação se está no chão
+    public float jumpForce;
+    private bool isGrounded;
 
-    private int vida;  // Vida atual do jogador
-    private int vidaMaxima = 3;  // Vida máxima do jogador
+    private int vida;
+    private int vidaMaxima = 3;
 
-    [SerializeField] private Image vidaOn1;  // Imagem do coração ativo 1
-    [SerializeField] private Image vidaOff1;  // Imagem do coração vazio 1
+    [SerializeField] private Image vidaOn1;
+    [SerializeField] private Image vidaOff1;
 
-    [SerializeField] private Image vidaOn2;  // Imagem do coração ativo 2
-    [SerializeField] private Image vidaOff2;  // Imagem do coração vazio 2
+    [SerializeField] private Image vidaOn2;
+    [SerializeField] private Image vidaOff2;
 
-    [SerializeField] private Image vidaOn3;  // Imagem do coração ativo 3
-    [SerializeField] private Image vidaOff3;  // Imagem do coração vazio 3
+    [SerializeField] private Image vidaOn3;
+    [SerializeField] private Image vidaOff3;
 
-    public GameObject projectilePrefab; // Prefab do projétil
-    public Transform shootPoint; // Ponto de onde o projétil será disparado
-    public float projectileSpeed = 10f; // Velocidade do projétil
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public float projectileSpeed = 10f;
+
+    private Animator animator;
 
     void Start()
     {
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
         porta = false;
         vida = vidaMaxima;
         AtualizarVidaUI();
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -56,29 +60,33 @@ public class Player : MonoBehaviour
         movePlayer = Input.GetAxis("Horizontal");
         playerRb.velocity = new Vector2(movePlayer * speed, playerRb.velocity.y);
 
-        // Verifica se o jogador pressionou o botão de pular e se está no chão
+        animator.SetFloat("Speed", Mathf.Abs(movePlayer));
+
+        // Configura a animação de pulo e queda
+        animator.SetBool("IsJumping", !isGrounded && playerRb.velocity.y > 0);
+        animator.SetBool("IsFalling", !isGrounded && playerRb.velocity.y < 0);
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             playerRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            isGrounded = false;  // Define isGrounded como false quando o pulo é iniciado
+            isGrounded = false;
         }
 
-        // Atualiza a orientação do jogador
         if (movePlayer > 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);  // Olhando para a direita
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (movePlayer < 0)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);  // Olhando para a esquerda
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
-
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("chao"))
         {
-            isGrounded = true;  // Marca o jogador como no chão
+            isGrounded = true;
         }
     }
 
@@ -86,7 +94,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("chao"))
         {
-            isGrounded = false;  // Marca o jogador como fora do chão
+            isGrounded = false;
         }
     }
 
@@ -133,7 +141,7 @@ public class Player : MonoBehaviour
 
         if (vida <= 0)
         {
-            SceneManager.LoadScene(2); // Corrigido
+            SceneManager.LoadScene(2);
         }
     }
 
